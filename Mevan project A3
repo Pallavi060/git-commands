@@ -1,0 +1,107 @@
+Assignment 3 (Part 1): Installation and setup: Jenkins
+
+STEP 1: MAVEN Project
+Step 1.1: Installing Maven and creating a sample project
+$sudo yum install maven ↲
+$mvn ––version ↲
+$mvn archetype:generate -DgroupId=com.example -DartifactId=myproject
+-DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+Step 1.2: Check Maven Directory Layout
+The Maven project directory structure will be created. In short, source code
+puts in folder /src/main/java/, unit test code puts in
+/src/test/java/
+Step 1.3: Review POM.xml
+Open the POM.xml with a text editor, review the generated pom.xml. It’s
+quite empty, just a single jUnit dependency.
+Step 1.4: Update POM
+Add compiler properties to tell Maven use a specified JDK version to
+compile the source code. Add following line into POM.xml
+<properties>
+
+<!-- https://maven.apache.org/general.html#encoding-warning -->
+<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<maven.compiler.source>1.8</maven.compiler.source>
+<maven.compiler.target>1.8</maven.compiler.target>
+</properties>
+Save and close POM.xml.
+
+Step 1.5: Maven Build
+Let build it with $mvn clean package
+Or
+$mvn clean package
+
+Step 1.6: Run
+$java -cp target/myproject-1.0-SNAPSHOT.jar com.example.App
+
+You should see “Hello World!” message on the screen
+
+
+
+
+
+
+Step 2 : Create a new Github repository (E.g Maven_Demo)
+
+
+
+
+Step 3: Push Maven project on Github
+1. Set new remote URL
+2. Initialize Maven project directory
+3. Add files to stage
+4. Commit
+5. Push project on Github remote repository (Maven_Demo)
+
+
+
+
+
+Step 4: Setup Jenkins
+1. Install
+sudo wget -O /etc/yum.repos.d/jenkins.repo \
+https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
+# Add required dependencies for the jenkins package
+sudo yum install jenkins
+sudo systemctl daemon-reload
+2. Start Jenkins
+● You can enable the Jenkins service to start at boot with the command:
+sudo systemctl enable jenkins
+● You can start the Jenkins service with the command:
+sudo systemctl start jenkins
+● You can check the status of the Jenkins service using the command:
+sudo systemctl status jenkins
+● If everything has been set up correctly, you should see an output like this:
+
+● For post installation setup wizard follow this link:
+https://www.jenkins.io/doc/book/installing/linux/#setup-wizard
+
+
+
+
+Step 5: Start Working with the GitHub Plugin for Jenkins
+Go to Manage Jenkins > System.
+● In the GitHub section, choose Add Github Server.
+● Add Credential → Kind : Secret text
+
+Secret : Personal access token of Github account
+
+● Test Connection
+
+
+
+
+
+
+Step 6: Configure Maven in Jenkins
+1. Install Maven Integration plugin:
+Go to Jenkins Dashboard ->Manage Jenkins ->Manage plugins ->Available
+->Maven Integration ->Install
+2. Add JDK
+Go to Manage Jenkins->Global tool configuration->JDK->Add JDK -> Add
+JAVA_HOME variable value (i.e. path of the jdk file on your system). (e.g.
+/usr/lib/jvm/jre-1.8.0-openjdk) or check on install automatically.
+3. Add Maven
+Go to Manage Jenkins->Global tool configuration->Maven -> Add
+Maven_home variable value (i.e. path of the maven file on your system). or
+check to install automatically.
