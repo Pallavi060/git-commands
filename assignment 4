@@ -1,0 +1,64 @@
+Assignment 3 (Part 2): Installation and setup: Selenium
+
+STEP 1: Download and install eclipse for your OS
+Eclipse Installation:
+https://www.tecmint.com/install-eclipse-ide-in-centos-rhel-fedora/
+STEP 2: Launch Eclipse
+STEP 3: Create Maven project
+STEP 4: Adding dependencies in pom.xml
+Go to https://mvnrepository.com
+Search for following dependencies and add them to pom.xml
+1)webdrivermanager
+2)selenium-java
+3)testng
+
+
+
+Assignment 4 : Testing using Selenium, Building CI/CD
+pipeline using Jenkins
+STEP 1: Writing a Test case using selenium webdriver
+● In src/test/java, create a new package and create a class inside the package
+(E.g. AppTest.java)
+● Add following code to the class
+        //code
+● Right click on the java file and Run as > TestNG test
+● Observe the output
+
+
+STEP 2: Committing code to Github
+● Create a new repository on Github
+● Push above created maven project on the repository using git commands
+STEP 3: Creating the pipeline
+● Start jenkins
+● New Item → Pipeline →Give name to Pipeline (e.g. Maven_Pipeline) →OK
+● A window will open to specify details about pipeline
+○ Add description
+○ Check the following checkbox
+
+Github project → Add URL of Github repository
+
+○ Build Triggers
+
+Build whenever a SNAPSHOT dependency is built
+GitHub hook trigger for GITScm polling
+
+○ Pipeline
+■ From dropdown list select Pipeline Script
+■ Inside the text area from dropdown list select Hello World
+■ A script will be generated
+Use Groovy sandbox
+
+○ Click Apply
+○ Click Save
+● Click on Build Now and monitor the build.
+● You can add more stages to the Jenkins pipeline script and monitor build.
+Refer: https://www.jenkins.io/doc/book/pipeline/jenkinsfile/
+● Check console output.
+
+
+
+STEP 4: Checking the status on committing changes in
+GitHub
+● Make some changes in the Github repository and check the triggers that
+automatically start building the pipeline in the jenkins.  
+
